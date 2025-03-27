@@ -1,0 +1,59 @@
+#include <iostream>
+#include <cmath> // For M_PI constant and pow() function
+using namespace std;
+
+// Function prototypes
+double cylinderVolume(double radius, double height);
+double sphereVolume(double radius);
+double cubeVolume(double side);
+
+int main() {
+    int choice;
+    double radius, height, side;
+
+    cout << "3D Shape Volume Calculator\n";
+    cout << "1. Calculate Volume of Cylinder\n";
+    cout << "2. Calculate Volume of Sphere\n";
+    cout << "3. Calculate Volume of Cube\n";
+    cout << "Enter your choice (1-3): ";
+    cin >> choice;
+
+    switch(choice) {
+        case 1:
+            cout << "Enter radius of cylinder: ";
+            cin >> radius;
+            cout << "Enter height of cylinder: ";
+            cin >> height;
+            cout << "Volume of cylinder: " << cylinderVolume(radius, height) << endl;
+            break;
+        case 2:
+            cout << "Enter radius of sphere: ";
+            cin >> radius;
+            cout << "Volume of sphere: " << sphereVolume(radius) << endl;
+            break;
+        case 3:
+            cout << "Enter side length of cube: ";
+            cin >> side;
+            cout << "Volume of cube: " << cubeVolume(side) << endl;
+            break;
+        default:
+            cout << "Invalid choice!" << endl;
+    }
+
+    return 0;
+}
+
+// Function to calculate volume of cylinder
+double cylinderVolume(double radius, double height) {
+    return M_PI * pow(radius, 2) * height; // πr²h
+}
+
+// Function to calculate volume of sphere
+double sphereVolume(double radius) {
+    return (4.0/3.0) * M_PI * pow(radius, 3); // (4/3)πr³
+}
+
+// Function to calculate volume of cube
+double cubeVolume(double side) {
+    return pow(side, 3); // side³
+}
