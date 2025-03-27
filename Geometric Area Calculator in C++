@@ -1,0 +1,61 @@
+#include <iostream>
+#include <cmath> // For M_PI constant
+using namespace std;
+
+// Function prototypes
+double circleArea(double radius);
+double triangleArea(double base, double height);
+double parallelogramArea(double base, double height);
+
+int main() {
+    int choice;
+    double radius, base, height;
+
+    cout << "Geometric Area Calculator\n";
+    cout << "1. Calculate Area of Circle\n";
+    cout << "2. Calculate Area of Triangle\n";
+    cout << "3. Calculate Area of Parallelogram\n";
+    cout << "Enter your choice (1-3): ";
+    cin >> choice;
+
+    switch(choice) {
+        case 1:
+            cout << "Enter radius of circle: ";
+            cin >> radius;
+            cout << "Area of circle: " << circleArea(radius) << endl;
+            break;
+        case 2:
+            cout << "Enter base of triangle: ";
+            cin >> base;
+            cout << "Enter height of triangle: ";
+            cin >> height;
+            cout << "Area of triangle: " << triangleArea(base, height) << endl;
+            break;
+        case 3:
+            cout << "Enter base of parallelogram: ";
+            cin >> base;
+            cout << "Enter height of parallelogram: ";
+            cin >> height;
+            cout << "Area of parallelogram: " << parallelogramArea(base, height) << endl;
+            break;
+        default:
+            cout << "Invalid choice!" << endl;
+    }
+
+    return 0;
+}
+
+// Function to calculate area of circle
+double circleArea(double radius) {
+    return M_PI * radius * radius; // πr²
+}
+
+// Function to calculate area of triangle
+double triangleArea(double base, double height) {
+    return 0.5 * base * height; // (1/2)bh
+}
+
+// Function to calculate area of parallelogram
+double parallelogramArea(double base, double height) {
+    return base * height; // bh
+}
