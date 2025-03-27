@@ -1,0 +1,42 @@
+#include <iostream>
+#include <climits>  // For INT_MIN and INT_MAX
+using namespace std;
+
+int main() {
+    const int SIZE = 5;  // Size of the array
+    int numbers[SIZE];    // Array declaration
+    int sum = 0;         // Variable to store sum
+    int highest = INT_MIN; // Initialize with minimum possible integer
+    int lowest = INT_MAX;  // Initialize with maximum possible integer
+
+    // Input values into array using for loop
+    cout << "Enter " << SIZE << " numbers:\n";
+    for (int i = 0; i < SIZE; i++) {
+        cout << "Number " << (i + 1) << ": ";
+        cin >> numbers[i];
+        
+        // Update sum
+        sum += numbers[i];
+        
+        // Check for highest
+        if (numbers[i] > highest) {
+            highest = numbers[i];
+        }
+        
+        // Check for lowest
+        if (numbers[i] < lowest) {
+            lowest = numbers[i];
+        }
+    }
+
+    // Calculate average
+    double average = static_cast<double>(sum) / SIZE;
+
+    // Display results
+    cout << "\nArray Analysis Results:\n";
+    cout << "Highest value: " << highest << endl;
+    cout << "Lowest value: " << lowest << endl;
+    cout << "Average value: " << average << endl;
+
+    return 0;
+}
