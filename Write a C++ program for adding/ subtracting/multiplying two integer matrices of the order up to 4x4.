@@ -1,0 +1,123 @@
+#include <iostream>
+using namespace std;
+
+const int MAX_SIZE = 4;
+
+// Function to read a matrix
+void readMatrix(int mat[MAX_SIZE][MAX_SIZE], int rows, int cols) {
+    cout << "Enter matrix elements (" << rows << "x" << cols << "):\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cin >> mat[i][j];
+        }
+    }
+}
+
+// Function to display a matrix
+void displayMatrix(int mat[MAX_SIZE][MAX_SIZE], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            cout << mat[i][j] << "\t";
+        }
+        cout << endl;
+    }
+}
+
+// Function to add two matrices
+void addMatrices(int mat1[MAX_SIZE][MAX_SIZE], int mat2[MAX_SIZE][MAX_SIZE], 
+                int result[MAX_SIZE][MAX_SIZE], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = mat1[i][j] + mat2[i][j];
+        }
+    }
+}
+
+// Function to subtract two matrices
+void subtractMatrices(int mat1[MAX_SIZE][MAX_SIZE], int mat2[MAX_SIZE][MAX_SIZE], 
+                     int result[MAX_SIZE][MAX_SIZE], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            result[i][j] = mat1[i][j] - mat2[i][j];
+        }
+    }
+}
+
+// Function to multiply two matrices
+void multiplyMatrices(int mat1[MAX_SIZE][MAX_SIZE], int mat2[MAX_SIZE][MAX_SIZE], 
+                     int result[MAX_SIZE][MAX_SIZE], int rows1, int cols1, int cols2) {
+    for (int i = 0; i < rows1; i++) {
+        for (int j = 0; j < cols2; j++) {
+            result[i][j] = 0;
+            for (int k = 0; k < cols1; k++) {
+                result[i][j] += mat1[i][k] * mat2[k][j];
+            }
+        }
+    }
+}
+
+int main() {
+    int mat1[MAX_SIZE][MAX_SIZE], mat2[MAX_SIZE][MAX_SIZE], result[MAX_SIZE][MAX_SIZE];
+    int rows1, cols1, rows2, cols2;
+    int choice;
+
+    cout << "Enter dimensions of first matrix (rows columns, max 4x4): ";
+    cin >> rows1 >> cols1;
+
+    cout << "Enter dimensions of second matrix (rows columns, max 4x4): ";
+    cin >> rows2 >> cols2;
+
+    // Input validation
+    if (rows1 > MAX_SIZE || cols1 > MAX_SIZE || rows2 > MAX_SIZE || cols2 > MAX_SIZE) {
+        cout << "Error: Maximum matrix size is 4x4!" << endl;
+        return 1;
+    }
+
+    readMatrix(mat1, rows1, cols1);
+    readMatrix(mat2, rows2, cols2);
+
+    cout << "\nMatrix Operations Menu:\n";
+    cout << "1. Add Matrices\n";
+    cout << "2. Subtract Matrices\n";
+    cout << "3. Multiply Matrices\n";
+    cout << "Enter your choice (1-3): ";
+    cin >> choice;
+
+    switch (choice) {
+        case 1: // Addition
+            if (rows1 != rows2 || cols1 != cols2) {
+                cout << "Error: Matrices must have same dimensions for addition!" << endl;
+                return 1;
+            }
+            addMatrices(mat1, mat2, result, rows1, cols1);
+            cout << "\nMatrix Sum:\n";
+            displayMatrix(result, rows1, cols1);
+            break;
+
+        case 2: // Subtraction
+            if (rows1 != rows2 || cols1 != cols2) {
+                cout << "Error: Matrices must have same dimensions for subtraction!" << endl;
+                return 1;
+            }
+            subtractMatrices(mat1, mat2, result, rows1, cols1);
+            cout << "\nMatrix Difference:\n";
+            displayMatrix(result, rows1, cols1);
+            break;
+
+        case 3: // Multiplication
+            if (cols1 != rows2) {
+                cout << "Error: Columns of first matrix must equal rows of second matrix!" << endl;
+                return 1;
+            }
+            multiplyMatrices(mat1, mat2, result, rows1, cols1, cols2);
+            cout << "\nMatrix Product:\n";
+            displayMatrix(result, rows1, cols2);
+            break;
+
+        default:
+            cout << "Invalid choice!" << endl;
+            return 1;
+    }
+
+    return 0;
+}
