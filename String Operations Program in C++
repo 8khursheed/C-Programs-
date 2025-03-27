@@ -1,0 +1,40 @@
+#include <iostream>
+#include <cstring> // For string functions
+using namespace std;
+
+int main() {
+    char str1[100], str2[100], result[200];
+    
+    cout << "Enter first string: ";
+    cin.getline(str1, 100);
+    
+    cout << "Enter second string: ";
+    cin.getline(str2, 100);
+
+    // 1. strlen - Get string length
+    cout << "\nString Lengths:\n";
+    cout << "Length of first string: " << strlen(str1) << endl;
+    cout << "Length of second string: " << strlen(str2) << endl;
+
+    // 2. strcpy - Copy string
+    strcpy(result, str1);
+    cout << "\nAfter strcpy (copy str1 to result): " << result << endl;
+
+    // 3. strcat - Concatenate strings
+    strcat(result, " ");
+    strcat(result, str2);
+    cout << "After strcat (concatenate str2): " << result << endl;
+
+    // 4. strcmp - Compare strings
+    cout << "\nString Comparison:\n";
+    int comparison = strcmp(str1, str2);
+    if (comparison == 0) {
+        cout << "Strings are equal\n";
+    } else if (comparison < 0) {
+        cout << "First string is lexicographically smaller\n";
+    } else {
+        cout << "First string is lexicographically larger\n";
+    }
+
+    return 0;
+}
