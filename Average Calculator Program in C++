@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+// Function to calculate average
+double calculateAverage(int numbers[], int count) {
+    double sum = 0;
+    for(int i = 0; i < count; i++) {
+        sum += numbers[i];
+    }
+    return sum / count;
+}
+
+int main() {
+    const int MAX_NUMBERS = 100;
+    int numbers[MAX_NUMBERS];
+    int count;
+
+    cout << "Average Calculator (Fixed Count)\n";
+    cout << "How many numbers? (1-100): ";
+    cin >> count;
+
+    // Input validation
+    if(count <= 0 || count > MAX_NUMBERS) {
+        cout << "Invalid number count!";
+        return 1;
+    }
+
+    cout << "Enter " << count << " numbers:\n";
+    for(int i = 0; i < count; i++) {
+        cin >> numbers[i];
+    }
+
+    double average = calculateAverage(numbers, count);
+    cout << "Average: " << average << endl;
+
+    return 0;
+}
