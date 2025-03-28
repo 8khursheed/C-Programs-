@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+// Class declaration
+class Student {
+private:
+    string name;
+    int rollNumber;
+    float marks;
+
+public:
+    // Member function to set student data
+    void setData(string n, int r, float m) {
+        name = n;
+        rollNumber = r;
+        marks = m;
+    }
+
+    // Member function to display student data
+    void displayData() {
+        cout << "\nStudent Details:" << endl;
+        cout << "Name: " << name << endl;
+        cout << "Roll Number: " << rollNumber << endl;
+        cout << "Marks: " << marks << endl;
+    }
+
+    // Member function to calculate grade
+    char calculateGrade() {
+        if (marks >= 90) return 'A';
+        else if (marks >= 80) return 'B';
+        else if (marks >= 70) return 'C';
+        else if (marks >= 60) return 'D';
+        else return 'F';
+    }
+};
+
+int main() {
+    // Create objects of Student class
+    Student student1;
+    Student student2;
+
+    // Set data for student1
+    student1.setData("John Doe", 101, 87.5);
+    
+    // Set data for student2
+    student2.setData("Jane Smith", 102, 92.3);
+
+    // Display student data and grades
+    student1.displayData();
+    cout << "Grade: " << student1.calculateGrade() << endl;
+
+    student2.displayData();
+    cout << "Grade: " << student2.calculateGrade() << endl;
+
+    return 0;
+}
