@@ -1,0 +1,18 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int number = 42;  // A regular integer variable
+    int* ptr;         // Pointer variable declaration
+
+    // Get the memory address of 'number' and store it in 'ptr'
+    ptr = &number;
+
+    // Display results
+    cout << "Value of number: " << number << endl;
+    cout << "Memory address of number (&number): " << &number << endl;
+    cout << "Value stored in pointer (ptr): " << ptr << endl;
+    cout << "Value pointed to by pointer (*ptr): " << *ptr << endl;
+
+    return 0;
+}
