@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int num = 10;        // Regular integer variable
+    int* ptr = &num;     // Pointer variable storing address of num
+
+    // Basic pointer operations
+    cout << "Original value of num: " << num << endl;
+    cout << "Address of num: " << &num << endl;
+    cout << "Value stored in ptr: " << ptr << endl;
+    cout << "Value pointed to by ptr: " << *ptr << endl;
+
+    // Modifying value through pointer
+    *ptr = 20;
+    cout << "\nAfter changing value through pointer:" << endl;
+    cout << "New value of num: " << num << endl;
+    cout << "Value pointed to by ptr: " << *ptr << endl;
+
+    // Pointer arithmetic
+    cout << "\nPointer arithmetic demonstration:" << endl;
+    cout << "Current ptr address: " << ptr << endl;
+    ptr++;  // Moves to next integer address (4 bytes forward typically)
+    cout << "After ptr++: " << ptr << endl;
+    ptr--;  // Moves back to original address
+    cout << "After ptr--: " << ptr << endl;
+
+    // Array and pointer relationship
+    int arr[3] = {15, 25, 35};
+    int* arrPtr = arr;  // Points to first element of array
+    cout << "\nArray elements accessed through pointer:" << endl;
+    for(int i = 0; i < 3; i++) {
+        cout << "
