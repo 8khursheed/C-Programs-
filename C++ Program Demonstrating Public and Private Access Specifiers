@@ -1,0 +1,66 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class BankAccount {
+private:  
+    string accountNumber;
+    double balance;
+    string password;
+
+public:  
+    BankAccount(string accNum, double initialBalance, string pwd) {
+        accountNumber = accNum;
+        balance = initialBalance;
+        password = pwd;
+    }
+
+    void displayAccountInfo() {
+        cout << "\nAccount Number: " << accountNumber << endl;
+        cout << "Current Balance: $" << balance << endl;
+    }
+
+    void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+            cout << "Deposit successful. New balance: $" << balance << endl;
+        } else {
+            cout << "Invalid deposit amount!" << endl;
+        }
+    }
+
+    void withdraw(double amount, string enteredPassword) {
+        if (enteredPassword != password) {
+            cout << "Incorrect password! Withdrawal denied." << endl;
+            return;
+        }
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            cout << "Withdrawal successful. New balance: $" << balance << endl;
+        } else {
+            cout << "Invalid withdrawal amount or insufficient funds!" << endl;
+        }
+    }
+
+    void changePassword(string oldPassword, string newPassword) {
+        if (oldPassword == password) {
+            password = newPassword;
+            cout << "Password changed successfully!" << endl;
+        } else {
+            cout << "Incorrect old password!" << endl;
+        }
+    }
+};
+
+int main() {
+    BankAccount myAccount("123456789", 1000.0, "secret123");
+
+    myAccount.displayAccountInfo();
+    myAccount.deposit(500.0);
+    myAccount.withdraw(200.0, "secret123");  // Correct password
+    myAccount.withdraw(200.0, "wrongpass");  // Incorrect password
+    myAccount.changePassword("secret123", "newpass123");
+
+
+    return 0;
+}
